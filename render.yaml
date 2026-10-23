@@ -1,0 +1,22 @@
+# Render Blueprint for the backend (Express API). The frontend is deployed separately on Vercel.
+# Secrets (sync: false) are entered in the Render dashboard; they are never stored in this file.
+services:
+  - type: web
+    name: learnmate-api
+    runtime: node
+    plan: free
+    # Install devDependencies too: TypeScript is needed to build.
+    buildCommand: npm install --include=dev && npm run build -w server
+    startCommand: npm run start -w server
+    healthCheckPath: /api/v1/health/live
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NODE_ENV
+        value: production
+      - key: GEMMA_API_KEY
+        sync: false
+      - key: GEMMA_MODEL
+        value: gemma-4-26b-a4b-it
+      - key: CORS_ORIGINS
+        sync: false # e.g. https://your-app.vercel.app (no trailing slash needed, no wildcard)
