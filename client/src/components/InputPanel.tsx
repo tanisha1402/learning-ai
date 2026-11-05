@@ -26,12 +26,12 @@ export function InputPanel(props: Props) {
   const length = text.length;
   const overLimit = length > maxChars;
   const nearLimit = length > maxChars * 0.9;
-  const counterColor = overLimit ? "text-rose-600 font-semibold" : nearLimit ? "text-amber-600" : "text-slate-500";
+  const counterColor = overLimit ? "text-rose-600 font-semibold" : nearLimit ? "text-amber-700" : "text-muted";
 
   return (
     <div className={`${card} p-5 sm:p-6`}>
       <div className="flex items-center justify-between gap-2">
-        <label htmlFor="source-text" className="text-sm font-semibold text-slate-900">
+        <label htmlFor="source-text" className="font-display text-lg font-bold tracking-tight text-ink">
           Study material
         </label>
         <div className="flex items-center gap-1">
@@ -55,13 +55,13 @@ export function InputPanel(props: Props) {
         placeholder="Paste a chapter, article or lecture notes here…"
         aria-describedby="source-text-help source-text-error"
         aria-invalid={props.inputError ? true : undefined}
-        className={`mt-3 block w-full resize-y rounded-xl border bg-white px-3.5 py-3 text-sm leading-relaxed text-slate-900 shadow-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 read-only:bg-slate-50 ${
-          props.inputError || overLimit ? "border-rose-300" : "border-slate-300"
+        className={`mt-3 block w-full resize-y rounded-2xl border bg-mist px-4 py-3.5 text-sm leading-relaxed text-ink placeholder:text-muted/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-violet read-only:bg-lilac/60 ${
+          props.inputError || overLimit ? "border-rose-300" : "border-line"
         }`}
       />
 
       <div className="mt-2 flex items-start justify-between gap-3 text-xs">
-        <p id="source-text-help" className="text-slate-500">
+        <p id="source-text-help" className="text-muted">
           At least {minChars} characters. Your text is sent to the Gemma API, so avoid confidential material.
         </p>
         <p className={`shrink-0 tabular-nums ${counterColor}`} aria-live="polite">
@@ -74,7 +74,7 @@ export function InputPanel(props: Props) {
         {!props.inputError && overLimit ? `Text is too long. Please shorten it to ${maxChars.toLocaleString()} characters.` : null}
       </div>
 
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <SegmentedControl
           legend="Summary length"
           name="summary-length"
@@ -103,7 +103,7 @@ export function InputPanel(props: Props) {
 
       <div className="mt-6 space-y-3">
         <button type="button" className={`${btnPrimary} w-full`} onClick={props.onGenerateAll} disabled={busy || overLimit}>
-          {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Sparkles className="h-4 w-4" aria-hidden="true" />}
+          {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Sparkles className="h-4 w-4 text-coral" aria-hidden="true" />}
           {busy ? "Generating…" : "Generate summary and quiz"}
         </button>
         <div className="grid grid-cols-2 gap-3">

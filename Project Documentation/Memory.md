@@ -39,6 +39,7 @@ React 18, TypeScript 5.6, Vite 5, Tailwind 3.4, Axios, lucide-react; Node 20+, E
 - Migration to hosted Gemma is implemented in code, config, tests, README, `render.yaml`, `client/vercel.json` and these docs.
 - **In the offline build sandbox:** `gemma.ts`/`errors.ts` passed a strict `tsc` check and a runtime smoke test with mocked HTTP (header auth, retries, redaction, error mapping). Everything else is **unexecuted**: no `npm install`, no Vitest run, no full typecheck or build, no real Gemini API call, no deployment.
 - No `package-lock.json` yet (first `npm install` creates it; commit it).
+- UI restyle (visual only, no logic changes): ink/violet/coral theme from the AIgnite Buildathon sticker, new hero with the sticker (`client/public/buildathon-sticker.webp`), restyled components. Written in an offline sandbox, so **not yet typechecked, built or viewed in a browser**.
 - No screenshots yet. Nothing pushed or deployed.
 
 ## Known risks / watch list
